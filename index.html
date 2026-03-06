@@ -7,6 +7,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -17,14 +18,71 @@
         <aside>
             <nav>
                 <ul>
-                    <li>Info</li>
-                    <li>Temperature</li>
-                    <li>Humidity</li>
+                    <li class="nav-button" data-target="info">Info</li>
+                    <li class="nav-button" data-target="temperature">Teplota</li>
+                    <li class="nav-button" data-target="humidity">Vlhkost</li>
                 </ul>
             </nav>
         </aside>
         <main>
+            <div id="info" class="content active info">
+                <section>
+                    <div class="label">
+                        <h2>Info</h2>
+                        <p>Zde jsou všechny informace na jednom místě</p>
+                    </div>
 
+                </section>
+                <div class="graphs">
+                    <div class="datas">
+                        <fieldset>
+                            <legend>Stats</legend>
+                            <h3 class="live-teplota">Načítám...</h3>
+                            <h3 class="live-vlhkost">Načítám...</h3>
+                            <h3 class="prumer-teplota">Načítám...</h3>
+                            <h3 class="prumer-vlhkost">Načítám...</h3>
+                        </fieldset>
+                    </div>
+                    <canvas class="teplotaGraf"></canvas>
+                    <canvas class="vlhkostGraf"></canvas>
+                </div>
+            </div>
+            <div id="temperature" class="content temp">
+                <section>
+                    <div class="label">
+                        <h2>Teplota</h2>
+                        <p>Zde jsou všechny informace na jednom místě</p>
+                    </div>
+                </section>
+                <div class="graphs">
+                    <div class="datas">
+                        <fieldset>
+                            <legend>Stats</legend>
+                            <h3 class="live-teplota">Načítám...</h3>
+                            <h3 class="prumer-teplota">Načítám...</h3>
+                        </fieldset>
+                    </div>
+                    <canvas class="teplotaGraf"></canvas>
+                </div>
+            </div>
+            <div id="humidity" class="content humidity">
+                <section>
+                    <div class="label">
+                        <h2>Teplota</h2>
+                        <p>Zde jsou všechny informace na jednom místě</p>
+                    </div>
+                </section>
+                <div class="graphs">
+                    <div class="datas">
+                        <fieldset>
+                            <legend>Stats</legend>
+                            <h3 class="live-vlhkost">Načítám...</h3>
+                            <h3 class="prumer-vlhkost">Načítám...</h3>
+                        </fieldset>
+                    </div>
+                    <canvas class="vlhkostGraf"></canvas>
+                </div>
+            </div>
         </main>
     </div>
 </body>
