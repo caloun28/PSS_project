@@ -57,3 +57,113 @@ li:hover {
     background-color: #edf9fd;
     cursor: pointer;
 }
+
+.content {
+    display: none;
+}
+
+.content.active {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.nav-button.active {
+    background-color: #c7ebf9;
+    font-weight: bold;
+    border-left: 4px solid grey;
+    width: calc(100% - 3px);
+}
+
+
+section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-top: 20px;
+    padding: 0 50px;
+}
+
+
+.label {
+    display: flex;
+    align-items: baseline;
+    gap: 25px;
+    border-bottom: 2px solid #E0E0E0;
+    max-width: 800px;
+}
+
+.label h2 {
+    margin: 0;
+    font-size: 34px;
+    line-height: 1;
+    color: #1a1a1a;
+}
+
+.label p {
+    line-height: 1;
+    margin: 0;
+    font-size: 16px;
+    color: #555555;
+}
+
+.datas {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+fieldset {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 5px 15px;
+    border-radius: 8px;
+    border: 2px solid #E0E0E0;
+    width: fit-content;
+    gap: 30px;
+    background-color: #ffffff;
+    box-sizing: border-box;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+legend {
+    padding: 0 10px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #36A2EB;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0 auto;
+}
+
+
+.graphs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 20px 30px;
+    gap: 30px;
+    box-sizing: border-box;
+    height: 100%;
+}
+
+.temp canvas,
+.humidity canvas {
+    max-height: 500px;
+}
+
+canvas {
+    width: 100% !important;
+    max-height: 300px;
+}
+
+.live-teplota,
+.live-vlhkost,
+.prumer-teplota,
+.prumer-vlhkost {
+    margin: 0;
+    font-size: 22px;
+    color: #333;
+    font-weight: 600;
+}
