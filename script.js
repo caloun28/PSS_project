@@ -1,20 +1,12 @@
 const API_BASE_URL = 'https://genia-follicular-libbie.ngrok-free.dev';
 
 document.addEventListener('DOMContentLoaded', () => {
-
-
-
-
-
-
-
-
-
     setActiveSite();
-    fetchLiveTeplota();
     fetchHistorie();
+    fetchLiveTeplota();
 
     setInterval(fetchLiveTeplota, 60000)
+    setInterval(fetchHistorie, 1800000)
 });
 
 
@@ -69,4 +61,98 @@ async function fetchLiveTeplota() {
     } catch (error) {
         console.error('Chyba při načítání live teploty:', error);
     }
+}
+
+async function fetchHistorie() {
+    try {
+        const res = await fetch(`${API_BASE_URL}/api/historie`, {
+            method: 'GET',
+            headers: {
+                'ngrok-skip-browser-warning': 'true'
+            }
+        });
+        const data = await res.json();
+
+        if (data && data.length > 0) {
+            const casy = [];
+            const teploty = [];
+            const vlhkosti = [];
+
+            data.forEach(zaznam => {
+                const cistyCas = zaznam.time.split('.')[0] + 'Z';
+                const cas = new Date(cistyCas);
+
+                if (isNaN(cas.getTime())) {
+                    console.error("Neplatný čas u záznamu:", zaznam);
+                    casy.push("??:??");
+                } else {
+                    const formatCas = cas.toLocaleTimeString('cs-CZ', { hour: '2-digit', minute: '2-digit' });
+                    casy.push(formatCas);
+                }
+
+                teploty.push(zaznam.teplota);
+                vlhkosti.push(zaznam.vlhkost);
+            });
+
+            const prumerTeplota = (teploty.reduce((a, b) => a + b, 0) / teploty.length).toFixed(1);
+            const prumerVlhkost = (vlhkosti.reduce((a, b) => a + b, 0) / vlhkosti.length).toFixed(1);
+
+            const prumerTeplotaElement = document.querySelectorAll('.prumer-teplota');
+            if (prumerTeplotaElement) {
+                prumerTeplotaElement.forEach(element => {
+                    element.textContent = `Průměrná teplota: ${prumerTeplota} °C`;
+                });
+            }
+
+            const prumerVlhkostElement = document.querySelectorAll('.prumer-vlhkost');
+            if (prumerVlhkostElement) {
+                prumerVlhkostElement.forEach(element => {
+                    element.textContent = `Průměrná vlhkost: ${prumerVlhkost} %`;
+                });
+            }
+
+            vykresliGraf('teplotaGraf', 'Teplota (°C)', casy, teploty, '#FF6384');
+            vykresliGraf('vlhkostGraf', 'Vlhkost (%)', casy, vlhkosti, '#36A2EB');
+        }
+
+    } catch (error) {
+        console.error('Chyba při načítání historie:', error);
+    }
+}
+
+function vykresliGraf(canvasClass, label, labels, data, barva) {
+    const canvas = document.querySelectorAll(`.${canvasClass}`);
+    if (canvas.length === 0) return;
+
+    canvas.forEach(canvas => {
+
+        const existujiciGraf = Chart.getChart(canvas);
+        if (existujiciGraf) {
+            existujiciGraf.destroy();
+        }
+        new Chart(canvas, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: label,
+                    data: data,
+                    borderColor: barva,
+                    backgroundColor: barva + '22',
+                    borderWidth: 2,
+                    tension: 0.3,
+                    fill: true,
+                }]
+            },
+            options: {
+                responsive: true,
+                maitnanceAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: false
+                    }
+                }
+            }
+        })
+    });
 }

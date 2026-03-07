@@ -16,23 +16,26 @@ header {
     border-bottom: 2px solid #E0E0E0;
 }
 
+.nav-button.active {
+    border-left: none;
+    border-top: 4px solid #58fafa;
+    background-color: #c7ebf9;
+    font-weight: bold;
+    width: 100%;
+}
+
 .container {
     display: flex;
-    height: 91.5vh;
+    flex-direction: column;
+    height: 100vh;
 }
 
 aside {
-    display: flex;
-    flex-direction: column;
-    width: 250px;
-    background-color: #F0F0F0;
-    border-right: 2px solid #E0E0E0;
-}
 
-nav {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 150px;
+    width: 100%;
+    height: fit-content;
+    border-right: none;
+    border-bottom: 2px solid #E0E0E0;
 }
 
 main {
@@ -42,6 +45,8 @@ main {
 
 ul {
     list-style-type: none;
+    display: flex;
+    flex-direction: row;
     width: 100%;
     padding: 0;
     margin: 0;
@@ -68,14 +73,6 @@ li:hover {
     flex-direction: column;
     width: 100%;
 }
-
-.nav-button.active {
-    background-color: #c7ebf9;
-    font-weight: bold;
-    border-left: 4px solid grey;
-    width: calc(100% - 3px);
-}
-
 
 section {
     display: flex;
@@ -117,6 +114,7 @@ section {
 
 fieldset {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-evenly;
     padding: 5px 15px;
     border-radius: 8px;
@@ -138,20 +136,18 @@ legend {
     margin: 0 auto;
 }
 
-
 .graphs {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     padding: 20px 30px;
-    gap: 30px;
+    gap: 70px;
     box-sizing: border-box;
-    height: 100%;
 }
 
 .temp canvas,
 .humidity canvas {
-    max-height: 500px;
+    max-height: 400px;
 }
 
 canvas {
@@ -167,4 +163,62 @@ canvas {
     font-size: 22px;
     color: #333;
     font-weight: 600;
+}
+
+@media screen and (max-width: 800px) {
+
+    header,
+    section {
+        padding: 0 15px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    section {
+        flex-direction: column;
+        align-items: flex-start;
+        height: auto;
+    }
+
+    .label {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+
+    li {
+        padding: 15px 0;
+        font-size: 14px;
+    }
+
+    .graphs {
+        padding: 20px 15px;
+        gap: 30px;
+    }
+
+    .live-teplota,
+    .live-vlhkost,
+    .prumer-teplota,
+    .prumer-vlhkost {
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+
+    fieldset {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .live-teplota,
+    .live-vlhkost,
+    .prumer-teplota,
+    .prumer-vlhkost {
+        font-size: 14px;
+    }
+
 }
