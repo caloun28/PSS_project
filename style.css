@@ -145,6 +145,20 @@ legend {
     box-sizing: border-box;
 }
 
+.chart-container {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 10px;
+}
+
+
+.chart-scroll-area {
+    width: 100%;
+    height: 350px;
+}
+
+
 .temp canvas,
 .humidity canvas {
     max-height: 400px;
@@ -163,19 +177,6 @@ canvas {
     font-size: 22px;
     color: #333;
     font-weight: 600;
-}
-
-.chart-container {
-    width: 100%;
-    overflow-x: auto;
-    overflow-y: hidden;
-    padding-bottom: 10px;
-}
-
-
-.chart-scroll-area {
-    width: 100%;
-    height: 350px;
 }
 
 @media screen and (max-width: 800px) {
@@ -211,11 +212,6 @@ canvas {
         gap: 30px;
     }
 
-    .chart-scroll-area {
-        min-width: 600px;
-        height: 400px;
-    }
-
     .live-teplota,
     .live-vlhkost,
     .prumer-teplota,
@@ -229,6 +225,11 @@ canvas {
 
     .label p {
         font-size: 14px;
+    }
+
+    .chart-scroll-area {
+        min-width: 600px;
+        height: 400px;
     }
 }
 
