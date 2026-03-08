@@ -18,7 +18,7 @@
         <aside>
             <nav>
                 <ul>
-                    <li class="nav-button" data-target="info">Info</li>
+                    <li class="nav-button active" data-target="info">Info</li>
                     <li class="nav-button" data-target="temperature">Teplota</li>
                     <li class="nav-button" data-target="humidity">Vlhkost</li>
                 </ul>
@@ -43,8 +43,17 @@
                             <h3 class="prumer-vlhkost">Načítám...</h3>
                         </fieldset>
                     </div>
-                    <canvas class="teplotaGraf"></canvas>
-                    <canvas class="vlhkostGraf"></canvas>
+                    <div class="chart-container">
+                        <div class="chart-scroll-area">
+                            <canvas class="teplotaGraf"></canvas>
+                        </div>
+                        <div class="chart-scroll-area">
+                            <canvas class="vlhkostGraf"></canvas>
+                        </div>
+                        <div class="chart-scroll-area">
+                            <canvas class="spolecnyGraf"></canvas>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div id="temperature" class="content temp">

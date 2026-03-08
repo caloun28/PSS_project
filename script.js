@@ -113,6 +113,7 @@ async function fetchHistorie() {
 
             vykresliGraf('teplotaGraf', 'Teplota (°C)', casy, teploty, '#FF6384');
             vykresliGraf('vlhkostGraf', 'Vlhkost (%)', casy, vlhkosti, '#36A2EB');
+            vykresliSpolecnyGraf('spolecnyGraf', 'Teplota (°C)', 'Vlhkost (%)', casy, teploty, vlhkosti, '#FF6384', '#36A2EB');
         }
 
     } catch (error) {
@@ -146,7 +147,7 @@ function vykresliGraf(canvasClass, label, labels, data, barva) {
             },
             options: {
                 responsive: true,
-                maitnanceAspectRatio: false,
+                maintainAspectRatio: false,
                 scales: {
                     y: {
                         beginAtZero: false
@@ -154,5 +155,81 @@ function vykresliGraf(canvasClass, label, labels, data, barva) {
                 }
             }
         })
+    });
+}
+
+function vykresliSpolecnyGraf(canvasClass, label1, label2, labels, data1, data2, barva1, barva2) {
+    const canvas = document.querySelectorAll(`.${canvasClass}`);
+    if (canvas.length === 0) return;
+
+    canvas.forEach(canvas => {
+        const existujiciGraf = Chart.getChart(canvas);
+        if (existujiciGraf) {
+            existujiciGraf.destroy();
+        }
+        new Chart(canvas, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: label1,
+                    data: data1,
+                    borderColor: barva1,
+                    backgroundColor: barva1 + '22',
+                    borderWidth: 2,
+                    tension: 0.3,
+                    fill: true,
+                    yAxisID: 'y',
+                }, {
+                    label: label2,
+                    data: data2,
+                    borderColor: barva2,
+                    backgroundColor: barva2 + '22',
+                    borderWidth: 2,
+                    tension: 0.3,
+                    fill: true,
+                    yAxisID: 'y1',
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        beginAtZero: false,
+                        title: {
+                            display: true,
+                            text: label1,
+                            color: barva1,
+                            font: {
+                                size: 14,
+                                weight: 'bold'
+                            }
+                        }
+                    },
+                    y1: {
+                        type: 'linear',
+                        display: true,
+                        position: 'right',
+                        beginAtZero: false,
+                        grid: {
+                            drawOnChartArea: false,
+                        },
+                        title: {
+                            display: true,
+                            text: label2,
+                            color: barva2,
+                            font: {
+                                size: 14,
+                                weight: 'bold'
+                            }
+                        }
+                    }
+                }
+            }
+        });
     });
 }
