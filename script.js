@@ -121,43 +121,6 @@ async function fetchHistorie() {
     }
 }
 
-function vykresliGraf(canvasClass, label, labels, data, barva) {
-    const canvas = document.querySelectorAll(`.${canvasClass}`);
-    if (canvas.length === 0) return;
-
-    canvas.forEach(canvas => {
-
-        const existujiciGraf = Chart.getChart(canvas);
-        if (existujiciGraf) {
-            existujiciGraf.destroy();
-        }
-        new Chart(canvas, {
-            type: 'line',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: label,
-                    data: data,
-                    borderColor: barva,
-                    backgroundColor: barva + '22',
-                    borderWidth: 2,
-                    tension: 0.3,
-                    fill: true,
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: false
-                    }
-                }
-            }
-        })
-    });
-}
-
 function vykresliSpolecnyGraf(canvasClass, label1, label2, labels, data1, data2, barva1, barva2) {
     const canvas = document.querySelectorAll(`.${canvasClass}`);
     if (canvas.length === 0) return;
@@ -231,5 +194,43 @@ function vykresliSpolecnyGraf(canvasClass, label1, label2, labels, data1, data2,
                 }
             }
         });
+    });
+}
+
+
+function vykresliGraf(canvasClass, label, labels, data, barva) {
+    const canvas = document.querySelectorAll(`.${canvasClass}`);
+    if (canvas.length === 0) return;
+
+    canvas.forEach(canvas => {
+
+        const existujiciGraf = Chart.getChart(canvas);
+        if (existujiciGraf) {
+            existujiciGraf.destroy();
+        }
+        new Chart(canvas, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: label,
+                    data: data,
+                    borderColor: barva,
+                    backgroundColor: barva + '22',
+                    borderWidth: 2,
+                    tension: 0.3,
+                    fill: true,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: false
+                    }
+                }
+            }
+        })
     });
 }
