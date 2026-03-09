@@ -5,6 +5,13 @@ body {
     flex-direction: column;
 }
 
+.nav-button.active {
+    border-left: none;
+    background-color: #e0f7ff;
+    font-weight: bold;
+    width: 100%;
+}
+
 header {
     display: flex;
     justify-content: space-between;
@@ -16,12 +23,6 @@ header {
     border-bottom: 2px solid #E0E0E0;
 }
 
-.nav-button.active {
-    border-left: none;
-    background-color: #e0f7ff;
-    font-weight: bold;
-    width: 100%;
-}
 
 .container {
     display: flex;
