@@ -18,8 +18,7 @@ header {
 
 .nav-button.active {
     border-left: none;
-    border-top: 4px solid #58fafa;
-    background-color: #c7ebf9;
+    background-color: #e0f7ff;
     font-weight: bold;
     width: 100%;
 }
