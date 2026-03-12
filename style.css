@@ -115,7 +115,8 @@ section {
 fieldset {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    text-align: center;
     padding: 5px 15px;
     border-radius: 8px;
     border: 2px solid #E0E0E0;
@@ -174,12 +175,12 @@ canvas {
 .prumer-teplota,
 .prumer-vlhkost {
     margin: 0;
-    font-size: 22px;
+    font-size: 20px;
     color: #333;
     font-weight: 600;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1200px) {
 
     header,
     section {
@@ -205,6 +206,13 @@ canvas {
     li {
         padding: 15px 0;
         font-size: 14px;
+    }
+
+    fieldset {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        width: 100%;
+        justify-content: space-between;
     }
 
     .graphs {
@@ -233,10 +241,10 @@ canvas {
     }
 }
 
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 500px) {
 
     fieldset {
-        flex-direction: column;
+        grid-template-columns: repeat(1, 1fr);
         align-items: center;
         width: 100%;
     }
